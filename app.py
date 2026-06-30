@@ -9,8 +9,10 @@ client = Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 def llm_explain(prompt):
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
-        contents=prompt
+        model="gemini-1.5-flash-latest"
+,
+        contents=[prompt]
+
     )
     return response.text.strip()
 
