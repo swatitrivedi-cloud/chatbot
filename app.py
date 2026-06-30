@@ -3,17 +3,16 @@ import pandas as pd
 import google.genai as genai
 
 # -----------------------------
-# GEMINI SETUP (NEW SDK)
+# GEMINI SETUP (CORRECT FOR SDK 2.10.0)
 # -----------------------------
 client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 def llm_explain(prompt):
-    response = client.responses.generate(
+    response = client.generate_text(
         model="gemini-1.5-flash-latest",
-        contents=[prompt]
+        prompt=prompt
     )
     return response.text
-
 
 # -----------------------------
 # LOAD DATA
