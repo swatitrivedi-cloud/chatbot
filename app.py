@@ -1,20 +1,19 @@
 import streamlit as st
 import pandas as pd
-from google.genai import Client
+import google.genai as genai
 
 # -----------------------------
-# GEMINI SETUP
+# GEMINI SETUP (NEW SDK)
 # -----------------------------
-client = Client(api_key=st.secrets["GEMINI_API_KEY"])
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 def llm_explain(prompt):
-    response = client.models.generate_content(
-        model="gemini-1.5-flash-latest"
-,
+    response = client.responses.generate(
+        model="gemini-1.5-flash-latest",
         contents=[prompt]
-
     )
-    return response.text.strip()
+    return response.text
+
 
 # -----------------------------
 # LOAD DATA
